@@ -30,12 +30,15 @@ func LoadAssets() map[string]string {
 
 		fd, err := assetfs.Open(path)
 		if err != nil {
-			log.Fatalf("failed to open file %s: %s", path, err)
+			log.Fatalf("failed to open embedded file %s: %s", path, err)
 		}
 		defer fd.Close()
 
 		buf := new(bytes.Buffer)
-		buf.ReadFrom(fd)
+		_, err = buf.ReadFrom(fd)
+		if err != nil {
+			log.Fatalf("failed to read embedded file %s: %s", path, err)
+		}
 
 		name := file.Name()
 
