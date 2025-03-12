@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Wishlist {{ .Name }}</title>
+  <body>
+
+    <h2>Amazon Wishlist {{ .Name }} scraped on {{ .Date.Format "02.01.2006" }}
+    
+    <table border="0">
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+      </tr>
+      {{ range .Items }}
+      <tr>
+        <td><a href="https://www.amazon.de{{ .Link }}">{{ .Product}}</a></td>
+        <td>{{ .Price }}</td>
+      </tr>
+      {{ end }}
+    </table>
+    
+  </body>
+</html>
